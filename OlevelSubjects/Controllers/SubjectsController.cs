@@ -23,9 +23,11 @@ namespace OlevelSubjects.Controllers
 
         // GET: api/Subjects
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Subject>>> GetSubjects()
+        public ActionResult<IEnumerable<Subject>> GetSubjects()
         {
-            return await _context.Subjects.ToListAsync();
+            List<Subject> sft = _context.Subjects.Select(x => x).Include(x => x.Notes).ToList<Subject>();
+           
+            return Ok(sft);
         }
 
         // GET: api/Subjects/5

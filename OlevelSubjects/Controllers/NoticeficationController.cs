@@ -23,9 +23,11 @@ namespace OlevelSubjects.Controllers
 
         // GET: api/Noticefication
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
+        public ActionResult<IEnumerable<User>> GetUsers()
         {
-            return await _context.Users.ToListAsync();
+            var text =
+                     _context.Users.Select(x => x);//.Include(x=>x.Messages.Select(y=>y.Text));
+            return Ok(text);
         }
 
         // GET: api/Noticefication/5

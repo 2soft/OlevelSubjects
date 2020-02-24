@@ -23,9 +23,10 @@ namespace OlevelSubjects.Controllers
 
         // GET: api/Classes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Class>>> GetClasses()
+        public ActionResult<IEnumerable<Class>> GetClasses()
         {
-            return await _context.Classes.ToListAsync();
+            var schl = _context.Classes.Select(x => x);
+            return Ok(schl);
         }
 
         // GET: api/Classes/5

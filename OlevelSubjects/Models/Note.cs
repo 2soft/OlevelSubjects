@@ -10,7 +10,7 @@ namespace OlevelSubjects.Models
         public int NoteId { get; set; }
         public string NoteName { get; set; }
         public string Url { get; set; }
-        
+        public int SubjectId { get; set; }
         public Subject Subject { get; set; }
         public int Form { get; set; }
     }

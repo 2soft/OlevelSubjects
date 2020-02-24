@@ -24,8 +24,6 @@ namespace OlevelSubjects.Migrations
 
                     b.Property<string>("ClassName");
 
-                    b.Property<int>("SubjectId");
-
                     b.HasKey("ClassId");
 
                     b.ToTable("Classes");
@@ -58,7 +56,7 @@ namespace OlevelSubjects.Migrations
 
                     b.Property<string>("NoteName");
 
-                    b.Property<int>("SubjectId");
+                    b.Property<int?>("SubjectId");
 
                     b.Property<string>("Url");
 
@@ -74,9 +72,13 @@ namespace OlevelSubjects.Migrations
                     b.Property<int>("SubjectId")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int?>("ClassId");
+
                     b.Property<string>("SubjectName");
 
                     b.HasKey("SubjectId");
+
+                    b.HasIndex("ClassId");
 
                     b.ToTable("Subjects");
                 });
@@ -99,8 +101,14 @@ namespace OlevelSubjects.Migrations
                 {
                     b.HasOne("OlevelSubjects.Models.Subject", "Subject")
                         .WithMany("Notes")
-                        .HasForeignKey("SubjectId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("SubjectId");
+                });
+
+            modelBuilder.Entity("OlevelSubjects.Models.Subject", b =>
+                {
+                    b.HasOne("OlevelSubjects.Models.Class")
+                        .WithMany("Subjects")
+                        .HasForeignKey("ClassId");
                 });
 #pragma warning restore 612, 618
         }

@@ -12,6 +12,6 @@ namespace OlevelSubjects.Models
         public int ClassId { get; set; }
         public string ClassName { get; set; }
        
-        public List<Subject> subjects { get; set; }
+        public List<Subject> Subjects { get; set; }
     }
 }

@@ -11,6 +11,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using OlevelSubjects.Data;
 
 namespace OlevelSubjects
@@ -28,7 +30,14 @@ namespace OlevelSubjects
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddDbContext<OdinaryContext>(options => options.UseMySql(Configuration.GetConnectionString("MysqlConn")));
+            services.AddDbContext<OdinaryContext>(options => options.UseMySql(Configuration.GetConnectionString("MysqlConnection")));
+            services.AddMvc().AddJsonOptions(Options =>
+            {
+                Options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                Options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+
+            }
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
