@@ -31,77 +31,32 @@ namespace OlevelSubjects.Controllers
 
         // GET: api/Classes/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Class>> GetClass(int id)
+        public string GetClass(int id)
         {
-            var @class = await _context.Classes.FindAsync(id);
-
-            if (@class == null)
-            {
-                return NotFound();
-            }
-
-            return @class;
+            return "value";
         }
 
         // PUT: api/Classes/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutClass(int id, Class @class)
+        public void PutClass(int id, Class @class)
         {
-            if (id != @class.ClassId)
-            {
-                return BadRequest();
-            }
 
-            _context.Entry(@class).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ClassExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
         }
 
         // POST: api/Classes
         [HttpPost]
-        public async Task<ActionResult<Class>> PostClass(Class @class)
+        public void PostClass(Class @class)
         {
-            _context.Classes.Add(@class);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetClass", new { id = @class.ClassId }, @class);
+           
         }
 
         // DELETE: api/Classes/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Class>> DeleteClass(int id)
+        public void DeleteClass(int id)
         {
-            var @class = await _context.Classes.FindAsync(id);
-            if (@class == null)
-            {
-                return NotFound();
-            }
-
-            _context.Classes.Remove(@class);
-            await _context.SaveChangesAsync();
-
-            return @class;
+            
         }
 
-        private bool ClassExists(int id)
-        {
-            return _context.Classes.Any(e => e.ClassId == id);
-        }
+       
     }
 }

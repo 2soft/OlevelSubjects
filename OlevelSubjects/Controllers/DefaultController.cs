@@ -17,7 +17,7 @@ namespace OlevelSubjects.Controllers
             return new string[] { "laini", "value2" };
         }
 
-        [HttpGet]
+        [HttpGet("{id}")]
         public string Get(int id)
         {
             return "value";
@@ -29,12 +29,12 @@ namespace OlevelSubjects.Controllers
 
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public void Put (int id, [FromBody]string value)
         {
 
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public void Delete(int id)
         {
 
