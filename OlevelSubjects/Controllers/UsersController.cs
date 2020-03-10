@@ -25,7 +25,7 @@ namespace OlevelSubjects.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
-            return await _context.Users.Include(x=>x.MessageId ).ToListAsync();
+            return await _context.Users.Include(x=>x.Messages).ToListAsync();
         }
 
         // GET: api/Users/5

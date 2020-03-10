@@ -13,6 +13,6 @@ namespace OlevelSubjects.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int MessageId { get; set; }
-        public List<Message> Messages;
+        public List<Message> Messages { get; set; }
     }
 }
